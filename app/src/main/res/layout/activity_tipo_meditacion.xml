@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/meditacionFondo"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_3">
+
+    <LinearLayout
+        android:id="@+id/layoutVideo"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.adrianjaime.calmatumente2.views.helper.FullScreenVideoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/vidInicio" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:layout_weight="5">
+
+            <ImageView
+                android:id="@+id/imgViewAppName"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:src="@drawable/logo_calmatumente" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutPlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:paddingBottom="40dp"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnPlay"
+                        android:layout_width="@dimen/standard_button_size"
+                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_med_play"
+                        android:background="@color/btnTransparent"
+                        android:onClick="onClick" />
+
+                    <ImageButton
+                        android:id="@+id/btnStop"
+                        android:layout_width="@dimen/standard_button_size"
+                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_med_stop"
+                        android:background="@color/btnTransparent"
+                        android:layout_below="@+id/btnPlay"
+                        android:onClick="onClick" />
+
+                    <ImageButton
+                        android:id="@+id/btnEscena"
+                        android:layout_width="@dimen/standard_button_size"
+                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_med_panorama"
+                        android:background="@color/btnTransparent"
+                        android:layout_below="@+id/btnPlay"
+                        android:onClick="onClick" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

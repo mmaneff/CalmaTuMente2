@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_inicio"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/btnMain"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+            <ImageButton
+                android:id="@+id/btnMeditacion"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_below="@+id/btnMain"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_meditation"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+            <ImageButton
+                android:id="@+id/btnConfiguracion"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_below="@+id/btnMeditacion"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_settings"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutPresentacion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="130dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp">
+
+            <VideoView
+                android:id="@+id/vvInicio"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnWebLink"
+            android:text="@string/web_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_primary"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginRight="140dp"
+            android:gravity="center"
+            android:textColor="@color/font_white"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

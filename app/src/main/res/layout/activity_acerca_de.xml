@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#F0FFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="#6F448A"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:text="@string/action_acerca_de" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/tvTexto1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="16dp"
+            android:text="El objetivo de los Programas Mindfulness del Dr. Adrian Jaime es asistirte a descubrir el poder de habitar en el AHORA, logrando abandonar hábitos que generan un modo de vida acelerado, invadido por el Estrés, la Ansiedad o la Insatisfacción Personal."/>
+
+        <TextView
+            android:id="@+id/tvTexto2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="16dp"
+            android:text="Nuestro Propósito es que Vuelvas al eje, la Sonrisa y el Disfrute."/>
+
+        <TextView
+            android:id="@+id/tvTexto3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:text="Que logres mayor Consciencia y Lleves tu Vida al Siguiente Nivel."/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#6F448A"/>
+
+        <TextView
+            android:id="@+id/tvTexto5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="12dp"
+            android:textColor="#404040"
+            android:text="Desarrollado por Adrian Haro / Mateo Maneff"/>
+
+    </LinearLayout>
+
+</LinearLayout>

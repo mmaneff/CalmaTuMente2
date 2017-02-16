@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_1" >
+
+    <LinearLayout
+        android:id="@+id/layoutVideo"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.adrianjaime.calmatumente2.views.helper.FullScreenVideoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/vidInicio" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/imgViewAppName"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:src="@drawable/logo_calmatumente" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/layoutLogo"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@+id/layoutButton"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/progressAnimation"
+            android:layout_gravity="center"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:background="@drawable/circulo"  />
+        <!--
+        <TextView
+            android:id="@+id/tvCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textColor="#EB841D"
+            android:textSize="80dp"
+            android:textStyle="bold"
+            android:text="3" />
+        -->
+
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/progressBarColorText"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:text="Preparate" />
+
+        <com.adrianjaime.calmatumente2.views.control.TwoLevelCircularProgressBar
+            android:id="@+id/progressBar_1"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:tlcp_progress="34"
+            app:tlcp_progress2="34"
+            app:tlcp_progress3="34"
+            app:tlcp_bg_color="@color/progressBarBackground"
+            app:tlcp_strokeWidth="26dp"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutLogo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/btnPlay"
+                android:layout_width="@dimen/secundary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_med_play"
+                android:background="@color/btnTransparent"
+                android:onClick="onClick" />
+
+            <ImageButton
+                android:id="@+id/btnStop"
+                android:layout_width="@dimen/secundary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:src="@drawable/ic_med_stop"
+                android:background="@color/btnTransparent"
+                android:layout_below="@+id/btnPlay"
+                android:onClick="onClick" />
+
+            <ImageButton
+                android:id="@+id/btnEscena"
+                android:layout_width="@dimen/secundary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:padding="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_med_panorama"
+                android:background="@color/btnTransparent"
+                android:layout_below="@+id/btnPlay"
+                android:onClick="onClick" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="font_white">#fff</color>
+
+    <color name="btnTransparent">#66000000</color>
+    <color name="btnColorPrimary">#B970A5</color>
+
+    <color name="btnColorPrimaryStart">#DAC8A5</color>
+    <color name="btnColorPrimaryEnd">#B48E49</color>
+    <color name="btnColorSecundaryStart">#DDD9A6</color>
+    <color name="btnColorSecundaryEnd">#B7AE46</color>
+    <color name="btnColorTertiaryStart">#C5D1AB</color>
+    <color name="btnColorTertiaryEnd">#829854</color>
+    <color name="btnColorLinkStart">#C5E98F</color>
+    <color name="btnColorLinkEnd">#7BB524</color>
+    <color name="btnMedMindStart">#D1B6D1</color>
+    <color name="btnMedMindEnd">#B384B3</color>
+    <color name="btnMedMenteStart">#A2CBEA</color>
+    <color name="btnMedMenteEnd">#549FD8</color>
+    <color name="btnMedEstresStart">#CBE69D</color>
+    <color name="btnMedEstresEnd">#93CA35</color>
+    <color name="btnMedInsomnioStart">#F4BE88</color>
+    <color name="btnMedInsomnioEnd">#EB841D</color>
+
+    <color name="borderColorPrimary">#fff</color>
+
+    <color name="colorTest">#ffffff</color>
+
+    <color name="progressBarBackgroundAnimation">#80FFFFFF</color>
+    <color name="progressBarBackground">#D0CAE8</color>
+    <color name="progressBarColorPrimary">#F19ABE</color>
+    <color name="progressBarColorPrimaryDark">#E83190</color>
+    <color name="progressBarColorSecundary">#8BC435</color>
+    <color name="progressBarColorSecundaryDark">#00923F</color>
+    <color name="progressBarColorTerciary">#C499C4</color>
+    <color name="progressBarColorTerciaryDark">#6F448A</color>
+    <color name="progressBarColorText">#58326E</color>
+
+    <color name="escena_1">#99CCFF</color>
+    <color name="escena_2">#FF9933</color>
+    <color name="escena_3">#33CC33</color>
+
+    <color name="indigo">#FF4081</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="background_dialog">#DAC8A5</color>
+
+</resources>

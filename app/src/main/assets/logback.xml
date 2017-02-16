@@ -1,0 +1,93 @@
+<configuration>
+    <property name="LOG_DIR" value="/data/data/com.adrianjaime.calmatumente2/files" />
+    <!--<property name="LOG_DIR" value="/sdcard/files" />-->
+
+    <!-- Create a logcat appender -->
+    <appender name="logcat" class="ch.qos.logback.classic.android.LogcatAppender">
+        <encoder>
+            <pattern>%msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a file appender for TRACE-level messages -->
+    <appender name="TraceLog" class="ch.qos.logback.core.FileAppender">
+        <!-- lazy initialization: don't create the file until 1st write -->
+        <lazy>true</lazy>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <file>${LOG_DIR}/trace.log</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a file appender for DEBUG-level messages -->
+    <appender name="DebugLog" class="ch.qos.logback.core.FileAppender">
+        <!-- lazy initialization: don't create the file until 1st write -->
+        <lazy>true</lazy>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <file>${LOG_DIR}/debug.log</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- lazy initialization: don't create the file until 1st write -->
+        <lazy>true</lazy>
+        <!-- active log file -->
+        <file>${LOG_DIR}/log.txt</file>
+        <encoder>
+            <pattern>%logger{35} - %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover period -->
+            <fileNamePattern>${LOG_DIR}/log.%d.txt</fileNamePattern>
+
+            <!-- keep 7 days' worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Write TRACE messages from class A to its own log -->
+    <logger name="com.adrianjaime.calmatumente2.views.main.MainActivity" level="TRACE">
+        <appender-ref ref="TraceLog" />
+    </logger>
+
+    <!-- Write DEBUG messages from class B to its own log -->
+    <logger name="com.adrianjaime.calmatumente2.views.main.MainActivity" level="DEBUG">
+        <appender-ref ref="DebugLog" />
+    </logger>
+
+    <!-- Write TRACE (and higher-level) messages to logcat -->
+    <root level="TRACE">
+        <appender-ref ref="FILE" />
+    </root>
+    <!-- Write INFO (and higher-level) messages to logcat -->
+    <root level="INFO">
+        <appender-ref ref="logcat" />
+        <appender-ref ref="TraceLog" />
+        <appender-ref ref="DebugLog" />
+        <appender-ref ref="FILE" />
+    </root>
+    <root level="DEBUG">
+        <appender-ref ref="logcat" />
+        <appender-ref ref="TraceLog" />
+        <appender-ref ref="DebugLog" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

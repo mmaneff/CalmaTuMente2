@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_inicio"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/btnInicio"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+            <ImageButton
+                android:id="@+id/btnMeditacion"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_below="@+id/btnInicio"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_meditation"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+            <ImageButton
+                android:id="@+id/btnConfiguracion"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
+                android:layout_below="@+id/btnMeditacion"
+                android:gravity="center"
+                android:src="@drawable/ic_menu_settings"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:background="@drawable/btn_primary" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLogo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="300dp"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/imgViewLogo"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/logo_adrian_jaime"/>
+
+        <ImageView
+            android:id="@+id/imgViewAppName"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/logo_calmatumente" />
+
+        <TextView
+            android:id="@+id/tvWebLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/web_link"
+            android:layout_marginTop="45dp"
+            android:textAlignment="center"
+            android:textColor="@color/font_white"
+            android:textStyle="bold"
+            android:textSize="36dp"
+            android:onClick="onClick" />
+
+    </LinearLayout>
+
+</LinearLayout>

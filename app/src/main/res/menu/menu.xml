@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.alarma.AlarmaActivity">
+    <item
+        android:id="@+id/action_crear_alarma"
+        android:orderInCategory="100"
+        android:title="@string/action_alarma"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_acerca_de"
+        android:orderInCategory="100"
+        android:title="@string/action_acerca_de"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_weblink"
+        android:orderInCategory="100"
+        android:title="@string/web_link"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_atras"
+        android:orderInCategory="100"
+        android:title="@string/action_atras"
+        app:showAsAction="never" />
+</menu>
