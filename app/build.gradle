@@ -7,8 +7,8 @@ android {
         applicationId "com.adrianjaime.calmatumente2"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 10
-        versionName "1.0.9"
+        versionCode 13
+        versionName "1.0.12"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

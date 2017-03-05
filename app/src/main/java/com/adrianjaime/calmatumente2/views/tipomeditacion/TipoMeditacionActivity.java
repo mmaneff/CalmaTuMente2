@@ -1,16 +1,20 @@
 package com.adrianjaime.calmatumente2.views.tipomeditacion;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -29,6 +33,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Matute on 26/12/2016.
+ * https://www.tutorialspoint.com/android/android_mediaplayer.htm
  */
 public class TipoMeditacionActivity extends AppCompatActivity implements TipoMeditacionView, View.OnClickListener {
 
@@ -38,15 +43,21 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
     @Bind(R.id.vidInicio)       VideoView videoView;
     @Bind(R.id.meditacionFondo) RelativeLayout meditacionFondo;
     @Bind(R.id.layoutVideo)     LinearLayout layoutVideo;
-    //@Bind(R.id.tvProgress)      TextView tvProgress;
-    //@Bind(R.id.pbrAvance)       ProgressBar pbrAvance;
+    @Bind(R.id.tvProgress)      TextView tvProgress;
+    @Bind(R.id.seekbar)         SeekBar seekbar;
 
     private MediaPlayer mediaPlayer;
     private int[] videos;
     private Uri path;
     private int meditacion;
     int currentVideo = 0;
-    private Utilities utils;
+
+    //Esto es nuevo para el manejo del MediaPlayer
+    private long startTime = 0;
+    private long finalTime = 0;
+    public static int oneTimeOnly = 0;
+
+    private Handler handler = new Handler();
 
 
     private  TipoMeditacionPresenter presenter;
@@ -61,61 +72,105 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
         meditacion = datos.getInt("meditacion");
 
         presenter = new TipoMeditacionPresenterImpl(this, getApplicationContext());
-        presenter.initView();
+        presenter.initView(meditacion);
+
     }
 
    @Override
     public void initControls() {
         ButterKnife.bind(this);
-        utils = new Utilities();
-        mediaPlayer = new MediaPlayer();
+        seekbar.setClickable(false);
     }
 
+    /*
     @Override
     public void showMeditacion() {
         Intent intent = new Intent(TipoMeditacionActivity.this, MeditacionActivity.class);
         startActivity(intent);
         finish();
     }
+    */
 
     @Override
     public void initVideos() {
-        videos = new int[]{
-                R.raw.med_lago,
-                R.raw.med_playa,
-                R.raw.med_rio,
-                -1
-        };
+        videos = new int[]{ R.raw.med_lago, R.raw.med_playa, R.raw.med_rio, -1 };
     }
 
     @Override
-    public void setFondoVideo() {
-        if(meditacion == 1) {
-            //setTitle(getResources().getText(R.string.meditacion_2));
-            meditacionFondo.setBackgroundResource(R.drawable.img_2);
-            mediaPlayer = MediaPlayer.create(this, R.raw.meditacion_1);
-        } else if(meditacion == 2) {
-            //setTitle(getResources().getText(R.string.meditacion_3));
-            meditacionFondo.setBackgroundResource(R.drawable.img_3);
-            mediaPlayer = MediaPlayer.create(this, R.raw.meditacion_2);
-        } else {
-            //setTitle(getResources().getText(R.string.meditacion_4));
-            meditacionFondo.setBackgroundResource(R.drawable.img_4);
-            mediaPlayer = MediaPlayer.create(this, R.raw.meditacion_3);
+    public void initFondoVideo(int meditacion) {
+        switch (meditacion) {
+            case 1:
+                meditacionFondo.setBackgroundResource(R.drawable.img_2);
+                break;
+            case 2:
+                meditacionFondo.setBackgroundResource(R.drawable.img_3);
+                break;
+            case 3:
+                meditacionFondo.setBackgroundResource(R.drawable.img_4);
+                break;
         }
-        btnPlay.setImageResource(R.drawable.ic_med_pause);
-        //mediaPlayer.pause();
     }
+
+    @Override
+    public void initMeditacion(int meditacion) {
+        switch (meditacion) {
+            case 1:
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.meditacion_1);
+                break;
+            case 2:
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.meditacion_2);
+                break;
+            case 3:
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.meditacion_3);
+                break;
+        }
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        seekbar.setMax(mediaPlayer.getDuration()); //Revisar si va o no
+    }
+
+    @Override
+    public void playMeditacion() {
+        if(mediaPlayer.isPlaying()) {
+            btnPlay.setImageResource(R.drawable.ic_med_play);
+            mediaPlayer.pause();
+        } else {
+            btnPlay.setImageResource(R.drawable.ic_med_pause);
+            mediaPlayer.start();
+
+            finalTime = mediaPlayer.getDuration();
+            startTime = mediaPlayer.getCurrentPosition();
+
+            /*
+            if (oneTimeOnly == 0) {
+                seekbar.setMax((int) finalTime);
+                oneTimeOnly = 1;
+            }*/
+
+            tvProgress.setText(Utilities.milliSecondsToTimer(startTime) + "/" + Utilities.milliSecondsToTimer(finalTime));
+
+            seekbar.setProgress((int)startTime);
+            handler.postDelayed(UpdateSongTime, 100);
+        }
+    }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            startTime = mediaPlayer.getCurrentPosition();
+
+            tvProgress.setText(Utilities.milliSecondsToTimer(startTime) + "/" + Utilities.milliSecondsToTimer(finalTime));
+            seekbar.setProgress((int)startTime);
+            handler.postDelayed(this, 100);
+        }
+    };
 
     @Override
     public void limpiarMediaPlayer() {
         if(mediaPlayer != null) {
-            if(mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-            }
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        handler.removeCallbacks(UpdateSongTime);
     }
 
     @Override
@@ -128,17 +183,6 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
         }
     }
 
-    @Override
-    public void startAudio() {
-        if(mediaPlayer.isPlaying()) {
-            btnPlay.setImageResource(R.drawable.ic_med_play);
-            mediaPlayer.pause();
-        } else {
-            btnStop.setColorFilter(getResources().getColor(R.color.font_white));
-            btnPlay.setImageResource(R.drawable.ic_med_pause);
-            mediaPlayer.start();
-        }
-    }
 
     @Override
     public void startVideoView() {
@@ -179,10 +223,10 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
                 }
             }
         }
-        nextVideo();
-
+        nextVideo(currentVideo);
     }
 
+    /*
     private void nextVideo() {
         if(currentVideo == 0) {
             currentVideo = 1;
@@ -198,15 +242,39 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
             btnEscena.setColorFilter(getResources().getColor(R.color.font_white));
         }
     }
+    */
 
+    private void nextVideo(int currentVideo) {
+        switch (currentVideo) {
+            case 0:
+                btnEscena.setColorFilter(getResources().getColor(R.color.escena_1));
+                break;
+            case 1:
+                btnEscena.setColorFilter(getResources().getColor(R.color.escena_2));
+                break;
+            case 2:
+                btnEscena.setColorFilter(getResources().getColor(R.color.escena_3));
+                break;
+            default:
+                btnEscena.setColorFilter(getResources().getColor(R.color.font_white));
+                break;
+        }
+
+        this.currentVideo = (currentVideo == 3) ? 0 : currentVideo + 1;
+    }
+
+    /*
     @Override
     public void stopVideoView() {
+
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             btnStop.setColorFilter(getResources().getColor(R.color.colorAccent));
             btnPlay.setImageResource(R.drawable.ic_med_play);
         }
+
     }
+    */
 
     @Override
     public void onClick(View view) {
@@ -215,8 +283,11 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
                 presenter.onStartAudio();
                 break;
             case R.id.btnStop:
-                presenter.onStopVideoView();
-                presenter.onSelectedMeditacion();
+                //presenter.onStopVideoView();
+                //presenter.onSelectedMeditacion();
+                Intent intent = new Intent(TipoMeditacionActivity.this, MeditacionActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.btnEscena:
                 presenter.onStartVideoView();
@@ -225,20 +296,21 @@ public class TipoMeditacionActivity extends AppCompatActivity implements TipoMed
     }
 
     @Override
-    protected void onDestroy() {
-        presenter.onDestroy();
-        super.onDestroy();
-    }
-
-    @Override
     protected void onResume() {
-        mediaPlayer.start();
         super.onResume();
+        //mediaPlayer.start();
     }
 
     @Override
     protected void onPause() {
-        //mediaPlayer.pause();
         super.onPause();
+        //mediaPlayer.pause();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
 }

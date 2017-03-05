@@ -17,24 +17,27 @@ public class TipoMeditacionPresenterImpl implements TipoMeditacionPresenter {
     private TipoMeditacionView tipoMeditacionView;
 
 
+
     public TipoMeditacionPresenterImpl(TipoMeditacionView tipoMeditacionView, Context context) {
         this.tipoMeditacionView = tipoMeditacionView;
         this.context = context;
     }
 
     @Override
-    public void initView() {
+    public void initView(int meditacion) {
         if(tipoMeditacionView != null) {
             tipoMeditacionView.initControls();
             tipoMeditacionView.initVideos();
-            tipoMeditacionView.setFondoVideo();
+            tipoMeditacionView.initFondoVideo(meditacion);
+            tipoMeditacionView.initMeditacion(meditacion);
+            tipoMeditacionView.playMeditacion();
         }
     }
 
     @Override
     public void onStartAudio() {
         if(tipoMeditacionView != null) {
-            tipoMeditacionView.startAudio();
+            tipoMeditacionView.playMeditacion();
         }
     }
 
@@ -49,6 +52,7 @@ public class TipoMeditacionPresenterImpl implements TipoMeditacionPresenter {
         }
     }
 
+    /*
     @Override
     public void onStopVideoView() {
         if(tipoMeditacionView != null) {
@@ -62,6 +66,7 @@ public class TipoMeditacionPresenterImpl implements TipoMeditacionPresenter {
             tipoMeditacionView.showMeditacion();
         }
     }
+    */
 
     @Override
     public void onDestroy() {
@@ -69,6 +74,5 @@ public class TipoMeditacionPresenterImpl implements TipoMeditacionPresenter {
         tipoMeditacionView.limpiarVideoView();
         tipoMeditacionView = null;
     }
-
 
 }

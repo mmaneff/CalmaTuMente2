@@ -64,6 +64,12 @@
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical" >
 
+                <SeekBar
+                    android:id="@+id/seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,8 +78,8 @@
 
                     <ImageButton
                         android:id="@+id/btnPlay"
-                        android:layout_width="@dimen/standard_button_size"
-                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_width="@dimen/btn_width_size_10"
+                        android:layout_height="@dimen/btn_height_size_10"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_med_play"
                         android:background="@color/btnTransparent"
@@ -81,8 +87,8 @@
 
                     <ImageButton
                         android:id="@+id/btnStop"
-                        android:layout_width="@dimen/standard_button_size"
-                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_width="@dimen/btn_width_size_10"
+                        android:layout_height="@dimen/btn_height_size_10"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_med_stop"
                         android:background="@color/btnTransparent"
@@ -91,13 +97,24 @@
 
                     <ImageButton
                         android:id="@+id/btnEscena"
-                        android:layout_width="@dimen/standard_button_size"
-                        android:layout_height="@dimen/primary_button_size"
+                        android:layout_width="@dimen/btn_width_size_10"
+                        android:layout_height="@dimen/btn_height_size_10"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_med_panorama"
                         android:background="@color/btnTransparent"
                         android:layout_below="@+id/btnPlay"
                         android:onClick="onClick" />
+
+                    <TextView
+                        android:id="@+id/tvProgress"
+                        android:layout_width="170dp"
+                        android:layout_height="@dimen/btn_height_size_10"
+                        android:textColor="#ffffff"
+                        android:background="@color/btnTransparent"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="28dp"
+                        android:text="0:00/0:00"/>
 
                 </LinearLayout>
 

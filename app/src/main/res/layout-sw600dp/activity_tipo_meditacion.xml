@@ -64,6 +64,12 @@
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical" >
 
+                <SeekBar
+                    android:id="@+id/seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,6 +104,17 @@
                         android:background="@color/btnTransparent"
                         android:layout_below="@+id/btnPlay"
                         android:onClick="onClick" />
+
+                    <TextView
+                        android:id="@+id/tvProgress"
+                        android:layout_width="110dp"
+                        android:layout_height="@dimen/primary_button_size"
+                        android:textColor="#ffffff"
+                        android:background="@color/btnTransparent"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="0:00/0:00"/>
 
 
                 </LinearLayout>

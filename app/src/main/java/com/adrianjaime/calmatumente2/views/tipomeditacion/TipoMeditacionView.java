@@ -8,14 +8,15 @@ public interface TipoMeditacionView {
 
     void initControls();
     void initVideos();
-    void setFondoVideo();
-    void showMeditacion();
+    void initFondoVideo(int meditacion);
+    void initMeditacion(int meditacion);
+
+    //void showMeditacion();
+    //void stopVideoView();
     void startVideoView() throws InterruptedException;
-    void stopVideoView();
-    void startAudio();
+    void playMeditacion();
+
     void limpiarMediaPlayer();
     void limpiarVideoView();
-
-
 
 }
